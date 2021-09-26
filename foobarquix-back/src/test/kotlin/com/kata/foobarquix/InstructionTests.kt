@@ -1,12 +1,13 @@
 package com.kata.foobarquix
 
 import com.kata.foobarquix.domain.Instructions
+import com.kata.foobarquix.domain.NoRule
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class InstructionTests {
 
-    private val instructions = Instructions()
+    private val instructions = Instructions(NoRule)
 
     @Test
     fun `1 should return 1`() {
