@@ -1,6 +1,4 @@
 <div>
-<div class="container">
-    <h2>Already converted values : </h2>
-</div>
-<app-foo-bar-quix-form (submitNumberOutput)="convertNumber($event)"></app-foo-bar-quix-form>
+    <app-foo-bar-quix-list [convertedNumberInput]="newConvertedNumber"></app-foo-bar-quix-list>
+    <app-foo-bar-quix-form (submitNumberOutput)="convertNumber($event)"></app-foo-bar-quix-form>
 </div>

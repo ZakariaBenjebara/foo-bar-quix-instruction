@@ -10,11 +10,13 @@ import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FrontEndInstructionComponent } from './front-end-instruction/front-end-instruction.component';
 import { BackEndInstructionComponent } from './back-end-instruction/back-end-instruction.component';
+import { FooBarQuixListComponent } from './foo-bar-quix/foo-bar-quix-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooBarQuixFormComponent,
+    FooBarQuixListComponent,
     FooBarQuixComponent,
     HomeComponent,
     NavBarComponent, 

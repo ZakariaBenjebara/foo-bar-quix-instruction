@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Already converted values : </h2>
+    <div id="list">
+        <ul class="list-group">
+            <li *ngFor="let convertedNumber of convertedNumbers" class="list-group-item list-group-item-success">
+                {{ convertedNumber.numberToConvert }} and the result is {{ convertedNumber.result }}
+            </li>
+        </ul>
+    </div>
+</div>
