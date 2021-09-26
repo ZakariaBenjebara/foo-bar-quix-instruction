@@ -1,9 +1,9 @@
 package com.kata.foobarquix.domain
 
-object FooRuler : Rule {
+object FooBarRuler : Rule {
 
     private val rules = linkedSetOf(
-        FooDividerRule, CompositeRule(linkedSetOf(FooEqualizerRule))
+        FooDividerRule, BarDividerRule, CompositeRule(linkedSetOf(FooEqualizerRule, BarEqualizerRule))
     )
 
     override fun apply(number: Int): RuleResult {
