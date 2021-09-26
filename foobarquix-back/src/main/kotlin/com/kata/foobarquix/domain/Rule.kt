@@ -1,40 +1,33 @@
 package com.kata.foobarquix.domain
 
 interface Rule {
-    fun apply(number: Int) : RuleResult
+    fun apply(number: Int): RuleResult
 }
 
-sealed class DividerRule(divider: Int, private val result: String) : Rule {
-    private val specification = Divider(divider)
-
+sealed class SpecificationRule(private val specification: Specification, private val result: String) : Rule {
     override fun apply(number: Int): RuleResult = when (specification.isSatisfiedBy(number)) {
         true -> RuleResult(result)
         false -> RuleResult.EMPTY
     }
 }
 
-sealed class EqualizerRule(equalizer: Int, private val result: String) : Rule {
-    private val specification = Equalizer(equalizer)
-    override fun apply(number: Int): RuleResult = when (specification.isSatisfiedBy(number)) {
-        true -> RuleResult(result)
-        false -> RuleResult.EMPTY
-    }
-}
+data class CompositeRule(private val rules: Set<Rule>) : Rule {
 
-class CompositeRule(private val rules: Set<Rule>) : Rule {
-
-    override fun apply(number: Int) : RuleResult {
+    override fun apply(number: Int): RuleResult {
         val numbers = number.toString().toCharArray()
         return numbers
             .map { Character.getNumericValue(it) }
             .flatMap { rules.map { rule -> rule.apply(it) } }
-            .reduce {a, b ->  a + b}
+            .reduce { a, b -> a + b }
     }
 }
 
 object NoRule : Rule {
-    override fun apply(number: Int) : RuleResult = RuleResult(number.toString())
+    override fun apply(number: Int): RuleResult = RuleResult(number.toString())
 }
+
+sealed class EqualizerRule(equalizer: Int, result: String) : SpecificationRule(Equalizer(equalizer), result)
+sealed class DividerRule(equalizer: Int, result: String) : SpecificationRule(Divider(equalizer), result)
 
 object FooDividerRule : DividerRule(3, "Foo")
 object FooEqualizerRule : EqualizerRule(3, "Foo")
@@ -46,5 +39,6 @@ data class RuleResult(val value: String) {
     companion object {
         val EMPTY = RuleResult("")
     }
+
     operator fun plus(that: RuleResult): RuleResult = RuleResult(value + that.value)
 }
