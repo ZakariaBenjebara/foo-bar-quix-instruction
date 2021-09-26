@@ -40,6 +40,7 @@ object FooDividerRule : DividerRule(3, "Foo")
 object FooEqualizerRule : EqualizerRule(3, "Foo")
 object BarDividerRule : DividerRule(5, "Bar")
 object BarEqualizerRule : EqualizerRule(5, "Bar")
+object QuixEqualizerRule : EqualizerRule(7, "Quix")
 
 data class RuleResult(val value: String) {
     companion object {
