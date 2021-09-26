@@ -7,15 +7,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FooBarQuixFormComponent implements OnInit {
 
+  convertNumberForm : FormGroup;
+  @Output() submitNumberOutput: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
-
+  constructor(private _formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.convertNumberForm = this._formBuilder.group({
+        convertNumber: [null, Validators.required],
+    });
   }
 
   submitNumber(): void {
+    if (this.convertNumberForm.valid) {
+      const inputNumber: number = this.convertNumberForm.get('convertNumber').value;
+      this.submitNumberOutput.emit(inputNumber);
+    } 
   }
-
 }

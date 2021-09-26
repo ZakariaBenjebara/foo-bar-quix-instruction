@@ -7,6 +7,9 @@ import { FooBarQuixService } from '../foo-bar-quix.service';
   templateUrl: './foo-bar-quix.component.html'
 })
 export class FooBarQuixComponent implements OnInit, OnDestroy {
+  submitNumberSubscriber: Subscription;
+  newConvertedNumber : NumberConverted;
+
 
   constructor(private fooBarQuixService: FooBarQuixService) { }
 
@@ -14,11 +17,19 @@ export class FooBarQuixComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.submitNumberSubscriber != null) {
+      this.submitNumberSubscriber.unsubscribe()
+    }
   }
 
-  convertNumber(inputNumber: number): void {
+  convertNumber(numberToConvert: number): void {
+    this.submitNumberSubscriber = this.fooBarQuixService.getResult(numberToConvert)
+      .subscribe(response =>  {
+        const result = response.result
+        this.newConvertedNumber = Object.assign( { numberToConvert, result}) as NumberConverted
+        console.log('result '+ JSON.stringify(this.newConvertedNumber))
+      });
   }
-
 }
 
 interface NumberConverted {

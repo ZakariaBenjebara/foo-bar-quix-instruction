@@ -1,3 +1,16 @@
-<div class="container"> 
-    To Be Completed
+<div class="container">
+    <form class="form-horizontal" [formGroup]="convertNumberForm" (ngSubmit)="submitNumber()">
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="convertNumber" class="control-label">Convert to number</label>
+                <input type="number" id="convertNumber" placeholder="inputNumber" class="form-control" formControlName="convertNumber">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!convertNumberForm.valid">
+            Convert
+        </button>
+
+    </form>
 </div>
