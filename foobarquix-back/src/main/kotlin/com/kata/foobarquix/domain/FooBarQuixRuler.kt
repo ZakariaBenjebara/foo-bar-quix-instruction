@@ -12,6 +12,6 @@ object FooBarQuixRuler : Rule {
         if (result.isEmpty()) {
             return NoRule.apply(number)
         }
-        return result.reduce {a, b -> a + b }
+        return result.reduce { a, b -> a + b }
     }
 }
