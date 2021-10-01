@@ -3,7 +3,7 @@ package com.kata.foobarquix.domain
 object FooBarQuixRuler : Rule {
 
     private val rules = linkedSetOf(
-        FooDividerRule, BarDividerRule, CompositeRule(linkedSetOf(FooEqualizerRule, BarEqualizerRule, QuixEqualizerRule))
+        FooDividerRule, BarDividerRule, NumberDigitsRule(linkedSetOf(FooEqualizerRule, BarEqualizerRule, QuixEqualizerRule))
     )
 
     override fun apply(number: Int): RuleResult {

@@ -11,7 +11,7 @@ sealed class SpecificationRule(private val specification: Specification, private
     }
 }
 
-data class CompositeRule(private val rules: Set<Rule>) : Rule {
+data class NumberDigitsRule(private val rules: Set<Rule>) : Rule {
 
     override fun apply(number: Int): RuleResult {
         val numbers = number.toString().toCharArray()
@@ -26,8 +26,8 @@ object NoRule : Rule {
     override fun apply(number: Int): RuleResult = RuleResult(number.toString())
 }
 
-sealed class EqualizerRule(equalizer: Int, result: String) : SpecificationRule(Equalizer(equalizer), result)
-sealed class DividerRule(equalizer: Int, result: String) : SpecificationRule(Divider(equalizer), result)
+sealed class EqualizerRule(value: Int, result: String) : SpecificationRule(Equalizer(value), result)
+sealed class DividerRule(value: Int, result: String) : SpecificationRule(Divider(value), result)
 
 object FooDividerRule : DividerRule(3, "Foo")
 object FooEqualizerRule : EqualizerRule(3, "Foo")
